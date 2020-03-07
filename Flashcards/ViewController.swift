@@ -18,6 +18,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var ten: UIButton!
     @IBOutlet weak var twfive: UIButton!
     
+    
+    override func prepare (for segue: UIStoryboardSegue, sender: Any?){
+        
+        let navigationController = segue.destination as! UINavigationController
+        
+        let creationController = navigationController.topViewController as! CreationViewController
+        
+        creationController.flashcardsController = self
+        
+    }
+    
+    
     // VIEW LOADS
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +63,11 @@ class ViewController: UIViewController {
         ten.layer.borderColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         twfive.layer.borderColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         
+        
+        
     }
+    
+    
     
    // CARD FLIPS TO ANSWER OR QUESTION
       @IBAction func cardClicked(_ sender: Any) {
@@ -65,7 +81,14 @@ class ViewController: UIViewController {
               cardAnswer.isHidden = false
           }
           
+        
       }
+    
+    func updateFlashcard(question: String, answer: String) {
+        dismiss(animated: true)
+    }
+    
+    
     
     // BUTTON CLICKED, BTN 25
     @IBAction func twfiveClicked(_ sender: Any) {
@@ -89,6 +112,8 @@ class ViewController: UIViewController {
             cardQuestion.isHidden = false
             cardAnswer.isHidden = true
         }
+        ten.isHidden = true
+
     }
     
     // BUTTON CLICKED, BTN 5
@@ -101,7 +126,10 @@ class ViewController: UIViewController {
             cardQuestion.isHidden = false
             cardAnswer.isHidden = true
         }
+        five.isHidden = true
     }
+    
+    
     
     
     }
